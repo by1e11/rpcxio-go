@@ -11,8 +11,8 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	rerrors "github.com/smallnest/rpcx/errors"
-	"github.com/smallnest/rpcx/log"
+	rerrors "github.com/by1e11/rpcxio-go/errors"
+	"github.com/by1e11/rpcxio-go/log"
 )
 
 // RpcServiceError represents an error that is case by service implementation.

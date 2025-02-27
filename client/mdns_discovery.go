@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/by1e11/rpcxio-go/log"
 	"github.com/grandcat/zeroconf"
-	"github.com/smallnest/rpcx/log"
 )
 
 type serviceMeta struct {

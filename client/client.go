@@ -11,13 +11,14 @@ import (
 	"net"
 	"net/url"
 	"strconv"
+	"strings"
 	"sync"
 	"time"
 
+	"github.com/by1e11/rpcxio-go/log"
+	"github.com/by1e11/rpcxio-go/protocol"
+	"github.com/by1e11/rpcxio-go/share"
 	circuit "github.com/rubyist/circuitbreaker"
-	"github.com/smallnest/rpcx/log"
-	"github.com/smallnest/rpcx/protocol"
-	"github.com/smallnest/rpcx/share"
 )
 
 const (
@@ -214,6 +215,7 @@ type Call struct {
 	Reply         interface{} // The reply from the function (*struct).
 	Error         error       // After completion, the error status.
 	Done          chan *Call  // Strobes when call is complete.
+	Stream        chan any    // Stream channel for streaming response.
 	Raw           bool        // raw message or not
 }
 
@@ -274,6 +276,14 @@ func (client *Client) Go(ctx context.Context, servicePath, serviceMethod string,
 
 	call.Args = args
 	call.Reply = reply
+	call.Stream = nil
+	if strings.Count(serviceMethod, ".") == 1 {
+		method := strings.Split(serviceMethod, ".")
+		call.ServiceMethod = method[0]
+		if method[1] == "Stream" {
+			call.Stream = make(chan any, 1024)
+		}
+	}
 
 	// // we allow done is nil
 	// if done == nil {
@@ -655,7 +665,7 @@ func (client *Client) input() {
 		if !isServerMessage {
 			client.mutex.Lock()
 			call = client.pending[seq]
-			delete(client.pending, seq)
+			// delete(client.pending, seq)
 			client.mutex.Unlock()
 		}
 
@@ -710,9 +720,15 @@ func (client *Client) input() {
 					if codec == nil {
 						call.Error = strErr(ErrUnsupportedCodec.Error())
 					} else {
-						err = codec.Decode(data, call.Reply)
+						var reply interface{}
+						err = codec.Decode(data, &reply)
 						if err != nil {
 							call.Error = strErr(err.Error())
+						}
+						if call.Stream != nil {
+							call.Stream <- reply
+						} else {
+							call.Reply = reply
 						}
 					}
 				}
@@ -722,7 +738,11 @@ func (client *Client) input() {
 
 			}
 
-			call.done()
+			if call.ResMetadata == nil {
+				call.done()
+			} else if _, ok := call.ResMetadata["is_chunk"]; !ok {
+				call.done()
+			}
 		}
 	}
 	// Terminate pending calls.

@@ -18,10 +18,10 @@ import (
 	"github.com/juju/ratelimit"
 	"golang.org/x/sync/singleflight"
 
-	ex "github.com/smallnest/rpcx/errors"
-	"github.com/smallnest/rpcx/log"
-	"github.com/smallnest/rpcx/protocol"
-	"github.com/smallnest/rpcx/share"
+	ex "github.com/by1e11/rpcxio-go/errors"
+	"github.com/by1e11/rpcxio-go/log"
+	"github.com/by1e11/rpcxio-go/protocol"
+	"github.com/by1e11/rpcxio-go/share"
 )
 
 const (

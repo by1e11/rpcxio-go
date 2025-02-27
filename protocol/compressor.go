@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"io"
 
+	"github.com/by1e11/rpcxio-go/util"
 	"github.com/golang/snappy"
-	"github.com/smallnest/rpcx/util"
 )
 
 // Compressor defines a common compression interface.

@@ -3,7 +3,7 @@ package serverplugin
 import (
 	"context"
 
-	"github.com/smallnest/rpcx/protocol"
+	"github.com/by1e11/rpcxio-go/protocol"
 )
 
 var aliasAppliedKey = "__aliasAppliedKey"

@@ -4,10 +4,10 @@ import (
 	"context"
 	"time"
 
+	"github.com/by1e11/rpcxio-go/protocol"
+	"github.com/by1e11/rpcxio-go/server"
 	"github.com/go-redis/redis_rate/v10"
 	"github.com/redis/go-redis/v9"
-	"github.com/smallnest/rpcx/protocol"
-	"github.com/smallnest/rpcx/server"
 )
 
 var _ server.PostReadRequestPlugin = (*RedisRateLimitingPlugin)(nil)

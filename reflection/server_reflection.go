@@ -12,7 +12,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/smallnest/rpcx/log"
+	"github.com/by1e11/rpcxio-go/log"
 	"github.com/twpayne/go-jsonstruct/v3"
 )
 
