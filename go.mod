@@ -32,6 +32,7 @@ require (
 	github.com/stretchr/testify v1.9.0
 	github.com/tinylib/msgp v1.2.5
 	github.com/twpayne/go-jsonstruct/v3 v3.1.0
+	github.com/ulule/deepcopier v0.0.0-20200430083143-45decc6639b6
 	github.com/valyala/fastrand v1.1.0
 	github.com/vmihailenco/msgpack/v5 v5.4.1
 	github.com/xtaci/kcp-go v5.4.20+incompatible
@@ -64,7 +65,7 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/miekg/dns v1.1.63 // indirect
 	github.com/onsi/ginkgo/v2 v2.22.2 // indirect
-	github.com/peterbourgon/g2s v0.0.0-20140925154142-ec76db4c1ac1 // indirect
+	github.com/peterbourgon/g2s v0.0.0-20170223122336-d4e7ad98afea // indirect
 	github.com/philhofer/fwd v1.1.3-0.20240916144458-20a13a1f6b7c // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect

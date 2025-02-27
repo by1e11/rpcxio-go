@@ -10,6 +10,7 @@ import (
 	"io"
 	"net"
 	"net/url"
+	"reflect"
 	"strconv"
 	"strings"
 	"sync"
@@ -19,6 +20,7 @@ import (
 	"github.com/by1e11/rpcxio-go/protocol"
 	"github.com/by1e11/rpcxio-go/share"
 	circuit "github.com/rubyist/circuitbreaker"
+	"github.com/ulule/deepcopier"
 )
 
 const (
@@ -720,15 +722,16 @@ func (client *Client) input() {
 					if codec == nil {
 						call.Error = strErr(ErrUnsupportedCodec.Error())
 					} else {
-						var reply interface{}
-						err = codec.Decode(data, &reply)
+						err = codec.Decode(data, &call.Reply)
 						if err != nil {
 							call.Error = strErr(err.Error())
 						}
+
 						if call.Stream != nil {
-							call.Stream <- reply
-						} else {
-							call.Reply = reply
+							replyType := reflect.TypeOf(call.Reply).Elem()
+							replyValue := reflect.New(replyType).Interface()
+							deepcopier.Copy(call.Reply).To(replyValue)
+							call.Stream <- replyValue
 						}
 					}
 				}
@@ -794,7 +797,7 @@ func (client *Client) input() {
 	client.mutex.Unlock()
 
 	if err != nil && !closing {
-		log.Errorf("rpcx: client protocol error: %v", err)
+		log.Warnf("rpcx: client protocol error: %v", err)
 	}
 }
 

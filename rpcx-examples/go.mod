@@ -4,7 +4,8 @@ go 1.23.0
 
 toolchain go1.23.5
 
-require github.com/by1e11/rpcxio-go v1.8.32
+// require github.com/by1e11/rpcxio-go v1.8.32
+require github.com/by1e11/rpcxio-go v1.0.0
 
 require (
 	github.com/akutz/memconn v0.1.0 // indirect
@@ -21,7 +22,7 @@ require (
 	github.com/godzie44/go-uring v0.0.0-20220926161041-69611e8b13d5 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
-	github.com/google/pprof v0.0.0-20250128161936-077ca0a936bf // indirect
+	github.com/google/pprof v0.0.0-20250208200701-d0013a598941 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/grandcat/zeroconf v1.0.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
@@ -30,7 +31,7 @@ require (
 	github.com/juju/ratelimit v1.0.2 // indirect
 	github.com/julienschmidt/httprouter v1.3.0 // indirect
 	github.com/kavu/go_reuseport v1.5.0 // indirect
-	github.com/klauspost/cpuid/v2 v2.2.9 // indirect
+	github.com/klauspost/cpuid/v2 v2.2.10 // indirect
 	github.com/klauspost/reedsolomon v1.12.4 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/libp2p/go-sockaddr v0.2.0 // indirect
@@ -40,7 +41,7 @@ require (
 	github.com/onsi/ginkgo/v2 v2.22.2 // indirect
 	github.com/philhofer/fwd v1.1.3-0.20240916144458-20a13a1f6b7c // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/quic-go/quic-go v0.49.0 // indirect
+	github.com/quic-go/quic-go v0.50.0 // indirect
 	github.com/rogpeppe/go-internal v1.10.0 // indirect
 	github.com/rs/cors v1.11.1 // indirect
 	github.com/rubyist/circuitbreaker v2.2.1+incompatible // indirect
@@ -51,22 +52,23 @@ require (
 	github.com/templexxx/xor v0.0.0-20191217153810-f85b25db303b // indirect
 	github.com/tinylib/msgp v1.2.5 // indirect
 	github.com/tjfoc/gmsm v1.4.1 // indirect
+	github.com/ulule/deepcopier v0.0.0-20200430083143-45decc6639b6 // indirect
 	github.com/valyala/fastrand v1.1.0 // indirect
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/xtaci/kcp-go v5.4.20+incompatible // indirect
 	go.uber.org/mock v0.5.0 // indirect
-	golang.org/x/crypto v0.32.0 // indirect
-	golang.org/x/exp v0.0.0-20250128144449-3edf0e91c1ae // indirect
-	golang.org/x/mod v0.22.0 // indirect
-	golang.org/x/net v0.34.0 // indirect
-	golang.org/x/sync v0.10.0 // indirect
-	golang.org/x/sys v0.29.0 // indirect
-	golang.org/x/text v0.21.0 // indirect
-	golang.org/x/tools v0.29.0 // indirect
-	google.golang.org/protobuf v1.36.4 // indirect
+	golang.org/x/crypto v0.35.0 // indirect
+	golang.org/x/exp v0.0.0-20250218142911-aa4b98e5adaa // indirect
+	golang.org/x/mod v0.23.0 // indirect
+	golang.org/x/net v0.35.0 // indirect
+	golang.org/x/sync v0.11.0 // indirect
+	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/text v0.22.0 // indirect
+	golang.org/x/tools v0.30.0 // indirect
+	google.golang.org/protobuf v1.36.5 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 )
 
 // replace github.com/smallnest/rpcx => ../../smallnest/rpcx
-replace github.com/by1e11/rpcxio-go => ../../rpcxio-go
+replace github.com/by1e11/rpcxio-go v1.0.0 => ../../rpcxio-go

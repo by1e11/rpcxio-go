@@ -6,15 +6,6 @@ import (
 	"fmt"
 )
 
-type Args struct {
-	A int
-	B int
-}
-
-type Reply struct {
-	C int
-}
-
 type Arith int
 
 func (t *Arith) Mul(ctx context.Context, args *Args, reply *Reply) error {
