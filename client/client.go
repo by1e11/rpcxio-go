@@ -732,10 +732,6 @@ func (client *Client) input() {
 							replyValue := reflect.New(replyType).Interface()
 							deepcopier.Copy(call.Reply).To(replyValue)
 							call.Stream <- replyValue
-							// we need pending the call back to keep the stream alive
-							client.mutex.Lock()
-							client.pending[seq] = call
-							client.mutex.Unlock()
 						}
 					}
 				}
@@ -749,6 +745,11 @@ func (client *Client) input() {
 				call.done()
 			} else if _, ok := call.ResMetadata["is_chunk"]; !ok {
 				call.done()
+			} else {
+				// we need pending the call back to keep the stream alive
+				client.mutex.Lock()
+				client.pending[seq] = call
+				client.mutex.Unlock()
 			}
 		}
 	}
