@@ -667,7 +667,7 @@ func (client *Client) input() {
 		if !isServerMessage {
 			client.mutex.Lock()
 			call = client.pending[seq]
-			// delete(client.pending, seq)
+			delete(client.pending, seq)
 			client.mutex.Unlock()
 		}
 
@@ -732,6 +732,10 @@ func (client *Client) input() {
 							replyValue := reflect.New(replyType).Interface()
 							deepcopier.Copy(call.Reply).To(replyValue)
 							call.Stream <- replyValue
+							// we need pending the call back to keep the stream alive
+							client.mutex.Lock()
+							client.pending[seq] = call
+							client.mutex.Unlock()
 						}
 					}
 				}
