@@ -741,9 +741,9 @@ func (client *Client) input() {
 
 			}
 
-			if call.ResMetadata == nil {
+			if res.Metadata == nil {
 				call.done()
-			} else if _, ok := call.ResMetadata["is_chunk"]; !ok {
+			} else if _, ok := res.Metadata["is_chunk"]; !ok {
 				call.done()
 			} else {
 				// we need pending the call back to keep the stream alive
